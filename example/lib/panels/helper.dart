@@ -51,22 +51,26 @@ class PanelHelper {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("NOTE: $title",
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle2!
-                          .copyWith(color: Theme.of(context).primaryColor)),
+                  Text(
+                    "NOTE: $title",
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                  ),
                   Container(height: 20),
-                  Text("Base url:",
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle2!
-                          .copyWith(color: Theme.of(context).accentColor)),
-                  Text(DioHelper.baseUrl,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2!
-                          .copyWith(color: Colors.grey)),
+                  Text(
+                    "Base url:",
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
+                  ),
+                  Text(
+                    DioHelper.baseUrl,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: Colors.grey),
+                  ),
                   for (var w in _buildInput(
                       context,
                       _urlController,
@@ -89,18 +93,23 @@ class PanelHelper {
       BuildContext context, Map<String, String?> map) {
     List<TextSpan> widgets = [];
     map.forEach((k, v) {
-      widgets.add(TextSpan(
+      widgets.add(
+        TextSpan(
           text: "$k: ",
           style: Theme.of(context)
               .textTheme
-              .subtitle2!
-              .copyWith(color: Colors.teal)));
-      widgets.add(TextSpan(
+              .titleSmall
+              ?.copyWith(color: Colors.teal),
+        ),
+      );
+      widgets.add(
+        TextSpan(
           text: "$v\n\n",
-          style: Theme.of(context)
-              .textTheme
-              .bodyText2!
-              .copyWith(color: Theme.of(context).disabledColor)));
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: Theme.of(context).disabledColor,
+              ),
+        ),
+      );
     });
     return widgets;
   }
@@ -113,8 +122,8 @@ class PanelHelper {
       Text("$title:",
           style: Theme.of(context)
               .textTheme
-              .subtitle2!
-              .copyWith(color: Theme.of(context).accentColor)),
+              .titleSmall!
+              .copyWith(color: Theme.of(context).colorScheme.tertiary)),
       Row(children: <Widget>[
         Expanded(child: TextField(controller: controller)),
         for (var w in _buildRequestButton(context, request)) w,
@@ -128,11 +137,12 @@ class PanelHelper {
       return [
         Container(width: 10),
         FloatingActionButton(
-            child: Text("GO",
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle2!
-                    .copyWith(color: Colors.white)),
+            child: Text(
+              "GO",
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: Colors.white,
+                  ),
+            ),
             onPressed: () => request())
       ];
     return [];
