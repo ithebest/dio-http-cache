@@ -66,7 +66,7 @@ class DioCacheManager {
     return handler.next(response);
   }
 
-  _onError(DioError e, ErrorInterceptorHandler handler) async {
+  _onError(DioException e, ErrorInterceptorHandler handler) async {
     if ((e.requestOptions.extra[DIO_CACHE_KEY_TRY_CACHE] ?? false) == true) {
       var responseDataFromCache =
           await _pullFromCacheBeforeMaxStale(e.requestOptions);
